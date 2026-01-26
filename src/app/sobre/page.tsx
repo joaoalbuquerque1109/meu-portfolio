@@ -23,28 +23,45 @@ export default function SobrePage() {
             Sobre Mim
           </h1>
 
-          {/* Texto principal */}
-          <div className="mt-4 max-w-3xl space-y-4 text-sm leading-relaxed text-white/70 md:text-base">
+          {/* Texto + Foto lado a lado */}
+        <div className="mt-6 grid gap-8 md:grid-cols-5 items-start">
+
+        {/* Texto */}
+        <div className="md:col-span-3 space-y-4 text-sm leading-relaxed text-white/70 md:text-base">
             <p>
-              Sou desenvolvedor web com foco em manutenção, correção e evolução de
-              sistemas já em produção. Atuo principalmente no backend, lidando com
-              código legado, regras de negócio, integrações e banco de dados, sempre
-              priorizando estabilidade, clareza técnica e impacto real.
+            Sou desenvolvedor web com foco em manutenção, correção e evolução de
+            sistemas já em produção. Atuo principalmente no backend, lidando com
+            código legado, regras de negócio, integrações e banco de dados, sempre
+            priorizando estabilidade, clareza técnica e impacto real.
             </p>
 
             <p>
-              Minha experiência vem de ambientes institucionais e sistemas
-              internos, onde confiabilidade, organização e continuidade são
-              essenciais. Tenho facilidade em compreender contextos complexos e
-              transformar necessidades em soluções técnicas sustentáveis.
+            Minha experiência vem de ambientes institucionais e sistemas
+            internos, onde confiabilidade, organização e continuidade são
+            essenciais. Tenho facilidade em compreender contextos complexos e
+            transformar necessidades em soluções técnicas sustentáveis.
             </p>
 
             <p>
-              Meu background em suporte técnico e liderança de equipe contribui
-              para uma visão completa do ciclo de vida do software, desde o uso
-              real pelo usuário até a manutenção contínua da aplicação.
+            Meu background em suporte técnico e liderança de equipe contribui
+            para uma visão completa do ciclo de vida do software, desde o uso
+            real pelo usuário até a manutenção contínua da aplicação.
             </p>
-          </div>
+        </div>
+
+        {/* Foto */}
+        <div className="md:col-span-2">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-white/10 bg-black/30">
+            <Image
+                src="/me.png"
+                alt="João Victor Albuquerque"
+                fill
+                className="object-cover"
+                priority
+            />
+            </div>
+        </div>
+        </div>
 
           {/* Tecnologias */}
           <div className="mt-10">

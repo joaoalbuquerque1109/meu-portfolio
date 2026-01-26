@@ -4,44 +4,6 @@ import Link from "next/link";
 export default function HomePage() {
   return (
     <main className="relative min-h-screen overflow-hidden">
-      {/* Background image */}
-      <div className="absolute inset-0 -z-20">
-        <Image
-          src="/bg.png"
-          alt=""
-          fill
-          priority
-          className="object-cover"
-        />
-      </div>
-
-      {/* Vignette + glows */}
-      <div className="absolute inset-0 -z-10 vignette" />
-
-      {/* Header */}
-      <header className="border-b border-white/10 bg-black/25 backdrop-blur">
-        <div className="container-page flex h-16 items-center justify-between">
-          <div className="flex items-center gap-3">
-            <h2>João Victor Albuquerque</h2>
-          </div>
-
-          <nav className="hidden items-center gap-8 text-sm text-white/75 md:flex">
-            <Link href="/sobre" className="hover:text-white">
-              Sobre Mim
-            </Link>
-            <Link href="/projetos" className="hover:text-white">
-              Projetos
-            </Link>
-            <Link href="/servicos" className="hover:text-white">
-              Serviços
-            </Link>
-            <Link href="/contato" className="hover:text-white">
-              Contato
-            </Link>
-          </nav>
-        </div>
-      </header>
-
       {/* Hero */}
       <section className="container-page py-14">
         <div className="glass relative overflow-hidden rounded-3xl h-112">
@@ -279,45 +241,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Footer tech row */}
-      <footer className="border-t border-white/10 bg-black/25 py-6 backdrop-blur">
-        <div className="container-page flex flex-wrap items-center justify-center gap-6 text-sm text-white/70">
-
-          <TechLogo
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg"
-            alt="Laravel"
-          />
-
-          <TechLogo
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
-            alt="PHP"
-          />
-
-          <TechLogo
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg"
-            alt="WordPress"
-          />
-
-          <TechLogo
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
-            alt="MySQL"
-          />
-
-          <TechLogo
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-            alt="GitHub"
-            invert
-          />
-
-          <TechLogo
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
-            alt="TypeScript"
-          />
-
-        </div>
-      </footer>
-
     </main>
   );
 }
