@@ -1,351 +1,408 @@
+import Image from "next/image";
+import Link from "next/link";
+
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-white text-zinc-900">
-      {/* Top Bar / Header */}
-      <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white/80 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <a href="#" className="font-semibold tracking-tight">
-            João Victor <span className="text-zinc-500">• Portfolio</span>
-          </a>
+    <main className="relative min-h-screen overflow-hidden">
+      {/* Background image */}
+      <div className="absolute inset-0 -z-20">
+        <Image
+          src="/bg.png"
+          alt=""
+          fill
+          priority
+          className="object-cover"
+        />
+      </div>
 
-          <nav className="hidden items-center gap-6 text-sm text-zinc-600 md:flex">
-            <a className="hover:text-zinc-900" href="#projetos">Projetos</a>
-            <a className="hover:text-zinc-900" href="#skills">Skills</a>
-            <a className="hover:text-zinc-900" href="#sobre">Sobre</a>
-            <a className="hover:text-zinc-900" href="#contato">Contato</a>
-          </nav>
+      {/* Vignette + glows */}
+      <div className="absolute inset-0 -z-10 vignette" />
 
+      {/* Header */}
+      <header className="border-b border-white/10 bg-black/25 backdrop-blur">
+        <div className="container-page flex h-16 items-center justify-between">
           <div className="flex items-center gap-3">
-            <a
-              href="#contato"
-              className="rounded-xl bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800"
-            >
-              Fale comigo
-            </a>
+            <h2>João Victor Albuquerque</h2>
           </div>
+
+          <nav className="hidden items-center gap-8 text-sm text-white/75 md:flex">
+            <Link href="/sobre" className="hover:text-white">
+              Sobre Mim
+            </Link>
+            <Link href="/projetos" className="hover:text-white">
+              Projetos
+            </Link>
+            <Link href="/servicos" className="hover:text-white">
+              Serviços
+            </Link>
+            <Link href="/contato" className="hover:text-white">
+              Contato
+            </Link>
+          </nav>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="mx-auto max-w-6xl px-6 pb-10 pt-16">
-        <div className="grid items-center gap-10 md:grid-cols-2">
-          <div>
-            <p className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs text-zinc-600">
-              Disponível para vagas remotas • Backend / Fullstack
-            </p>
-
-            <h1 className="mt-5 text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
-              Eu construo sistemas web rápidos, escaláveis e fáceis de manter.
-            </h1>
-
-            <p className="mt-4 text-base leading-relaxed text-zinc-600 md:text-lg">
-              Backend Developer Jr focado em PHP/Laravel, APIs REST e integrações.
-              Experiência com SQL, manutenção em produção e entrega orientada a
-              requisitos. Também atuo com Next.js/TypeScript quando faz sentido.
-            </p>
-
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <a
-                href="#projetos"
-                className="rounded-xl bg-zinc-900 px-5 py-3 text-sm font-medium text-white hover:bg-zinc-800"
-              >
-                Ver projetos
-              </a>
-              <a
-                href="#contato"
-                className="rounded-xl border border-zinc-200 px-5 py-3 text-sm font-medium text-zinc-900 hover:bg-zinc-50"
-              >
-                Entrar em contato
-              </a>
-            </div>
-
-            <div className="mt-7 flex flex-wrap gap-2 text-xs text-zinc-600">
-              <span className="rounded-full border border-zinc-200 bg-white px-3 py-1">PHP</span>
-              <span className="rounded-full border border-zinc-200 bg-white px-3 py-1">Laravel</span>
-              <span className="rounded-full border border-zinc-200 bg-white px-3 py-1">MySQL</span>
-              <span className="rounded-full border border-zinc-200 bg-white px-3 py-1">TypeScript</span>
-              <span className="rounded-full border border-zinc-200 bg-white px-3 py-1">Next.js</span>
-              <span className="rounded-full border border-zinc-200 bg-white px-3 py-1">Git</span>
-            </div>
+      <section className="container-page py-14">
+        <div className="glass relative overflow-hidden rounded-3xl h-112">
+          {/* hero background image */}
+          <div className="absolute inset-0">
+            <Image
+              src="/hero.png"
+              alt=""
+              fill
+              className="object-cover object-right"
+              priority
+            />
+            {/* dark overlay + left fade */}
+            <div className="absolute inset-0 bg-black/55" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-transparent" />
           </div>
 
-          {/* Card visual (substitui foto por enquanto) */}
-          <div className="rounded-3xl border border-zinc-200 bg-gradient-to-b from-zinc-50 to-white p-6 shadow-sm">
-            <div className="rounded-2xl border border-zinc-200 bg-white p-5">
-              <p className="text-sm font-medium text-zinc-900">Destaque</p>
-              <p className="mt-2 text-sm leading-relaxed text-zinc-600">
-                “Transformo requisitos em entregas claras, com boa documentação,
-                código organizado e foco em performance e manutenção.”
+          <div className="relative grid gap-8 px-8 py-10 md:grid-cols-2 md:px-12 md:py-12">
+            <div className="max-w-xl">
+              <h1 className="text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
+                Desenvolvedor Web focado<br />
+                em manter, corrigir e evoluir<br />
+                sistemas.
+              </h1>
+
+              <p className="mt-4 text-sm leading-relaxed text-white/70 md:text-base">
+                Especialista em Backend PHP/Laravel,<br />
+                WordPress Técnico e Sistemas Internos.
               </p>
 
-              <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-                  <p className="text-xs text-zinc-600">Foco</p>
-                  <p className="mt-1 text-sm font-semibold">APIs + Sistemas</p>
-                </div>
-                <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-                  <p className="text-xs text-zinc-600">Entrega</p>
-                  <p className="mt-1 text-sm font-semibold">Produção & manutenção</p>
-                </div>
-                <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-                  <p className="text-xs text-zinc-600">Método</p>
-                  <p className="mt-1 text-sm font-semibold">Scrum / Agile</p>
-                </div>
-                <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-                  <p className="text-xs text-zinc-600">Diferencial</p>
-                  <p className="mt-1 text-sm font-semibold">Suporte → Dev</p>
-                </div>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a
+                  href="#projetos"
+                  className="btn-glow rounded-xl bg-gradient-to-b from-indigo-500/90 to-indigo-700/70 px-5 py-3 text-sm font-medium text-white transition hover:brightness-110"
+                >
+                  Ver Projetos Reais
+                </a>
+
+                <a
+                  href="#contato"
+                  className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10"
+                >
+                  Falar Comigo &nbsp;›
+                </a>
               </div>
 
-              <div className="mt-6 flex flex-wrap gap-2">
-                <a
-                  href="https://github.com/joaoalbuquerque1109"
-                  target="_blank"
-                  className="rounded-xl border border-zinc-200 px-4 py-2 text-sm hover:bg-zinc-50"
-                  rel="noreferrer"
-                >
-                  GitHub
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/joão-victor-albuquerque-932747257"
-                  target="_blank"
-                  className="rounded-xl border border-zinc-200 px-4 py-2 text-sm hover:bg-zinc-50"
-                  rel="noreferrer"
-                >
-                  LinkedIn
-                </a>
-                <a
-                  href="public\cv.pdf"
-                  className="rounded-xl border border-zinc-200 px-4 py-2 text-sm hover:bg-zinc-50"
-                >
-                  Baixar CV
-                </a>
+              <div className="mt-8">
+                <p className="text-xs font-semibold text-white/60 uppercase tracking-wide mb-3">Stack Atual</p>
+                <div className="flex flex-wrap gap-2">
+                  <TechBadge label="PHP" />
+                  <TechBadge label="Laravel" />
+                  <TechBadge label="SQL" />
+                  <TechBadge label="Next.js" />
+                  <TechBadge label="TypeScript" />
+                  <TechBadge label="Vue.js" />
+                </div>
               </div>
             </div>
+
+            {/* Right column intentionally empty (image already covers) */}
+            <div className="hidden md:block" />
           </div>
         </div>
       </section>
 
-      {/* Projetos */}
-      <section id="projetos" className="mx-auto max-w-6xl px-6 py-14">
-        <div className="flex items-end justify-between gap-6">
-          <div>
-            <h2 className="text-2xl font-semibold tracking-tight">Projetos em destaque</h2>
-            <p className="mt-2 text-zinc-600">
-              Cases que mostram backend, integrações, banco de dados e entrega real.
-            </p>
-          </div>
-          <a className="text-sm text-zinc-600 hover:text-zinc-900" href="#">
-            Ver todos →
-          </a>
-        </div>
+      {/* O que eu faço */}
+      {/* Como eu ajudo empresas e times */}
+      <section id="servicos" className="container-page pb-10">
+        <h2 className="mb-4 text-lg font-semibold text-white/85">
+          Como eu ajudo empresas e times
+        </h2>
 
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
-          <ProjectCard
-            title="Sistema de RH (MVP)"
-            desc="Cadastros, avaliações, faltas e relatórios. Acesso por perfil e trilha de auditoria."
-            tags={["Laravel", "MySQL", "APIs", "RBAC"]}
-          />
-          <ProjectCard
-            title="Portal de serviços (prefeitura)"
-            desc="Melhorias de performance, correção de bugs em produção e evolução de módulos."
-            tags={["PHP", "SQL", "Manutenção", "Produção"]}
-          />
-          <ProjectCard
-            title="SaaS ERP (em andamento)"
-            desc="Core multi-tenant com regras por tenant, autenticação e painéis."
-            tags={["Next.js", "TypeScript", "Postgres", "RLS"]}
-          />
+        <div className="glass rounded-3xl p-6">
+          <div className="grid gap-5 md:grid-cols-3">
+
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/20">
+                <svg className="h-5 w-5 text-white/90" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path d="M12 6v6l4 2" />
+                  <circle cx="12" cy="12" r="9" />
+                </svg>
+              </div>
+              <h3 className="text-sm font-semibold text-white/90">
+                Gestão e Manutenção de Sistemas Existentes
+              </h3>
+              <p className="mt-2 text-xs leading-relaxed text-white/60">
+                Atuação contínua em aplicações já em produção, com correções, ajustes de
+                regra, performance e estabilidade (System Care).
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/20">
+                <svg className="h-5 w-5 text-white/90" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <rect x="3" y="4" width="18" height="14" rx="2" />
+                  <path d="M8 20h8" />
+                </svg>
+              </div>
+              <h3 className="text-sm font-semibold text-white/90">
+                Desenvolvimento e Evolução de Sites
+              </h3>
+              <p className="mt-2 text-xs leading-relaxed text-white/60">
+                Criação e evolução de sites institucionais com foco em performance, SEO
+                e facilidade de manutenção.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/20">
+                <svg className="h-5 w-5 text-white/90" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path d="M3 3h18v6H3z" />
+                  <path d="M3 9h18v12H3z" />
+                  <path d="M7 15h.01" />
+                  <path d="M11 15h2" />
+                </svg>
+              </div>
+              <h3 className="text-sm font-semibold text-white/90">
+                Desenvolvimento e Manutenção de E-commerces
+              </h3>
+              <p className="mt-2 text-xs leading-relaxed text-white/60">
+                Implementação e suporte técnico de lojas virtuais, integrações de
+                pagamento e melhorias no checkout.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/20">
+                <svg className="h-5 w-5 text-white/90" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6z" />
+                </svg>
+              </div>
+              <h3 className="text-sm font-semibold text-white/90">
+                Gestão Técnica de Aplicações Web
+              </h3>
+              <p className="mt-2 text-xs leading-relaxed text-white/60">
+                Organização de código, banco de dados e integrações para garantir
+                segurança, previsibilidade e evolução sustentável.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/20">
+                <svg className="h-5 w-5 text-white/90" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path d="M8 6h13" />
+                  <path d="M8 12h13" />
+                  <path d="M8 18h13" />
+                  <path d="M3 6h.01" />
+                  <path d="M3 12h.01" />
+                  <path d="M3 18h.01" />
+                </svg>
+              </div>
+              <h3 className="text-sm font-semibold text-white/90">
+                Levantamento de Requisitos e Soluções Sob Medida
+              </h3>
+              <p className="mt-2 text-xs leading-relaxed text-white/60">
+                Tradução das necessidades do negócio em soluções técnicas viáveis,
+                evitando retrabalho.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/20">
+                <svg className="h-5 w-5 text-white/90" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path d="M12 9v4" />
+                  <path d="M12 17h.01" />
+                  <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-sm font-semibold text-white/90">
+                Correções Críticas e Suporte Especializado
+              </h3>
+              <p className="mt-2 text-xs leading-relaxed text-white/60">
+                Atendimento pontual ou recorrente para bugs em produção, incidentes
+                críticos e falhas que impactam a operação.
+              </p>
+            </div>
+
+          </div>
         </div>
       </section>
 
-      {/* Skills */}
-      <section id="skills" className="border-t border-zinc-200 bg-zinc-50">
-        <div className="mx-auto max-w-6xl px-6 py-14">
-          <h2 className="text-2xl font-semibold tracking-tight">Skills e ferramentas</h2>
-          <p className="mt-2 text-zinc-600">
-            Minha stack principal hoje e onde eu entrego mais rápido.
+
+      {/* Projetos Recentes */}
+      <section id="projetos" className="container-page pb-10">
+        <h2 className="mb-4 text-lg font-semibold text-white/85">Projetos Recentes</h2>
+
+        <div className="glass rounded-3xl p-6">
+          <div className="grid gap-6 md:grid-cols-3">
+            <ProjectCard
+              image="/card-1.jpg"
+              title="Sistema de Gestão Interna"
+              desc="Manutenção e otimização contínua em ERP."
+            />
+            <ProjectCard
+              image="/card-2.jpg"
+              title="Suporte Técnico ao Usuário"
+              desc="Entregas evolutivas com feedback contínuo."
+            />
+            <ProjectCard
+              image="/card-3.jpg"
+              title="E-commerce Completo"
+              desc="Respeito aos ambientes de produção e regras do negócio."
+            />
+          </div>
+          <div className="mt-6 flex justify-center">
+            <a
+              href="#projetos"
+              className="btn-glow rounded-xl border border-indigo-300/15 bg-white/5 px-6 py-2.5 text-sm text-white/90 transition hover:bg-white/10"
+            >
+              Ver Mais Projetos &nbsp;›
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section id="contato" className="container-page pb-14">
+        <div className="glass rounded-3xl px-6 py-10 text-center">
+          <p className="mx-auto max-w-2xl text-xl font-semibold leading-snug text-white/90 md:text-2xl">
+            Disponível para contratos PJ ou CLT<br />
+            focados em manutenção e evolução de sistemas web.
           </p>
 
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
-            <InfoCard
-              title="Backend"
-              items={["PHP", "Laravel", "Node.js", "APIs REST", "Auth/RBAC"]}
-            />
-            <InfoCard
-              title="Banco de dados"
-              items={["MySQL", "PostgreSQL", "Modelagem", "Otimização de queries", "Relatórios"]}
-            />
-            <InfoCard
-              title="Frontend & DevOps"
-              items={["Next.js", "TypeScript", "Tailwind", "Git", "Deploy (Vercel)"]}
-            />
+          <p className="mt-3 text-sm text-white/60">
+            Envie uma mensagem para conversarmos sobre escopo, prazos e expectativa.
+          </p>
+
+          <div className="mt-7 flex justify-center">
+            <a
+              href="mailto:joao.albuquerque1109@gmail.com"
+              className="btn-glow rounded-xl bg-gradient-to-b from-indigo-500/90 to-indigo-700/70 px-7 py-3 text-sm font-medium text-white transition hover:brightness-110"
+            >
+              Entre em Contato &nbsp;›
+            </a>
           </div>
         </div>
       </section>
 
-      {/* Sobre */}
-      <section id="sobre" className="mx-auto max-w-6xl px-6 py-14">
-        <div className="grid gap-10 md:grid-cols-3">
-          <div className="md:col-span-1">
-            <h2 className="text-2xl font-semibold tracking-tight">Sobre mim</h2>
-            <p className="mt-2 text-zinc-600">
-              Visão de produto, suporte e desenvolvimento.
-            </p>
-          </div>
+      {/* Footer tech row */}
+      <footer className="border-t border-white/10 bg-black/25 py-6 backdrop-blur">
+        <div className="container-page flex flex-wrap items-center justify-center gap-6 text-sm text-white/70">
 
-          <div className="md:col-span-2">
-            <div className="rounded-3xl border border-zinc-200 bg-white p-6">
-              <p className="leading-relaxed text-zinc-700">
-                Sou analista de suporte técnico com experiência liderando equipe e
-                entregando soluções web em ambiente institucional. Tenho foco em
-                backend (PHP/Laravel), banco de dados e integrações. Minha força
-                está em entender o problema, traduzir em requisitos e entregar
-                código sustentável com melhoria contínua.
-              </p>
+          <TechLogo
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg"
+            alt="Laravel"
+          />
 
-              <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                <Stat label="Experiência em TI" value="2+ anos" />
-                <Stat label="Foco atual" value="Backend / Fullstack" />
-                <Stat label="Modelo" value="Remoto" />
-                <Stat label="Objetivo" value="Crescer rápido em impacto" />
-              </div>
-            </div>
-          </div>
+          <TechLogo
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
+            alt="PHP"
+          />
+
+          <TechLogo
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg"
+            alt="WordPress"
+          />
+
+          <TechLogo
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+            alt="MySQL"
+          />
+
+          <TechLogo
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+            alt="GitHub"
+            invert
+          />
+
+          <TechLogo
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+            alt="TypeScript"
+          />
+
         </div>
-      </section>
+      </footer>
 
-      {/* Contato */}
-      <section id="contato" className="border-t border-zinc-200">
-        <div className="mx-auto max-w-6xl px-6 py-14">
-          <div className="rounded-3xl border border-zinc-200 bg-white p-8">
-            <div className="grid gap-8 md:grid-cols-2 md:items-center">
-              <div>
-                <h2 className="text-2xl font-semibold tracking-tight">Vamos conversar</h2>
-                <p className="mt-2 text-zinc-600">
-                  Se você tem uma vaga remota ou um projeto, eu respondo rápido.
-                </p>
-
-                <div className="mt-6 space-y-2 text-sm text-zinc-700">
-                  <p><span className="font-medium">Email:</span> joao.albuquerque1109@gmail.com</p>
-                  <p><span className="font-medium">WhatsApp:</span> +55 (81) 99489-1208</p>
-                </div>
-
-                <div className="mt-6 flex flex-wrap gap-3">
-                  <a
-                    href="https://github.com/"
-                    target="_blank"
-                    className="rounded-xl bg-zinc-900 px-5 py-3 text-sm font-medium text-white hover:bg-zinc-800"
-                    rel="noreferrer"
-                  >
-                    GitHub
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/"
-                    target="_blank"
-                    className="rounded-xl border border-zinc-200 px-5 py-3 text-sm font-medium hover:bg-zinc-50"
-                    rel="noreferrer"
-                  >
-                    LinkedIn
-                  </a>
-                </div>
-              </div>
-
-              {/* Form (estático) */}
-              <form className="space-y-3">
-                <div>
-                  <label className="text-sm font-medium">Nome</label>
-                  <input
-                    className="mt-1 w-full rounded-xl border border-zinc-200 px-4 py-3 outline-none focus:ring-2 focus:ring-zinc-200"
-                    placeholder="Seu nome"
-                  />
-                </div>
-                <div>
-                  <label className="text-sm font-medium">Email</label>
-                  <input
-                    className="mt-1 w-full rounded-xl border border-zinc-200 px-4 py-3 outline-none focus:ring-2 focus:ring-zinc-200"
-                    placeholder="seuemail@exemplo.com"
-                  />
-                </div>
-                <div>
-                  <label className="text-sm font-medium">Mensagem</label>
-                  <textarea
-                    className="mt-1 h-28 w-full rounded-xl border border-zinc-200 px-4 py-3 outline-none focus:ring-2 focus:ring-zinc-200"
-                    placeholder="Me conte sobre a vaga/projeto..."
-                  />
-                </div>
-                <button
-                  type="button"
-                  className="w-full rounded-xl bg-zinc-900 px-5 py-3 text-sm font-medium text-white hover:bg-zinc-800"
-                >
-                  Enviar (configurar)
-                </button>
-                <p className="text-xs text-zinc-500">
-                  Este formulário está como UI. Depois a gente liga em uma API Route (Next) ou Resend.
-                </p>
-              </form>
-            </div>
-          </div>
-
-          <footer className="py-10 text-center text-sm text-zinc-500">
-            © {new Date().getFullYear()} João Victor Albuquerque. Todos os direitos reservados.
-          </footer>
-        </div>
-      </section>
     </main>
   );
 }
 
-function ProjectCard({
-  title,
-  desc,
-  tags,
+function TechLogo({
+  src,
+  alt,
+  invert = false,
 }: {
-  title: string;
-  desc: string;
-  tags: string[];
+  src: string;
+  alt: string;
+  invert?: boolean;
 }) {
   return (
-    <article className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-      <h3 className="text-lg font-semibold tracking-tight">{title}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-zinc-600">{desc}</p>
-      <div className="mt-4 flex flex-wrap gap-2">
-        {tags.map((t) => (
-          <span key={t} className="rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs text-zinc-700">
-            {t}
-          </span>
-        ))}
+    <div className="group flex items-center gap-2 opacity-70 transition hover:opacity-100">
+      <img
+        src={src}
+        alt={alt}
+        className={`h-6 w-auto transition ${
+          invert ? "invert" : ""
+        } group-hover:scale-105`}
+      />
+    </div>
+  );
+}
+
+
+function TechPill({ label }: { label: string }) {
+  return (
+    <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/75">
+      {label}
+    </span>
+  );
+}
+
+function ServiceCard({
+  image,
+  title,
+  desc,
+}: {
+  image: string;
+  title: string;
+  desc: string;
+}) {
+  return (
+    <article className="group overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+      <div className="relative h-36">
+        <Image src={image} alt="" fill className="object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/10" />
       </div>
-      <div className="mt-6">
-        <a href="#" className="text-sm font-medium text-zinc-900 hover:underline">
-          Ver detalhes →
-        </a>
+      <div className="p-4">
+        <h3 className="text-sm font-semibold text-white/90">{title}</h3>
+        <p className="mt-1 text-xs leading-relaxed text-white/60">{desc}</p>
       </div>
     </article>
   );
 }
 
-function InfoCard({ title, items }: { title: string; items: string[] }) {
+function ProjectCard({
+  image,
+  title,
+  desc,
+}: {
+  image: string;
+  title: string;
+  desc: string;
+}) {
   return (
-    <div className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
-      <p className="text-sm font-semibold">{title}</p>
-      <ul className="mt-3 space-y-2 text-sm text-zinc-600">
-        {items.map((item) => (
-          <li key={item} className="flex gap-2">
-            <span className="mt-2 h-1.5 w-1.5 rounded-full bg-zinc-400" />
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <article className="group overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+      <div className="relative h-36">
+        <Image src={image} alt="" fill className="object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/10" />
+      </div>
+      <div className="p-4">
+        <h3 className="text-sm font-semibold text-white/90">{title}</h3>
+        <p className="mt-1 text-xs leading-relaxed text-white/60">{desc}</p>
+      </div>
+    </article>
   );
 }
 
-function Stat({ label, value }: { label: string; value: string }) {
+function TechBadge({ label }: { label: string }) {
   return (
-    <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-      <p className="text-xs text-zinc-600">{label}</p>
-      <p className="mt-1 text-sm font-semibold text-zinc-900">{value}</p>
-    </div>
+    <span className="rounded-full border border-indigo-300/20 bg-indigo-500/10 px-3 py-1.5 text-xs font-medium text-indigo-300">
+      {label}
+    </span>
   );
 }
