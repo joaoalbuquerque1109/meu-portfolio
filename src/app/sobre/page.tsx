@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Server, Monitor, Database } from "lucide-react";
 
 export default function SobrePage() {
   return (
@@ -29,17 +30,25 @@ export default function SobrePage() {
         {/* Texto */}
         <div className="md:col-span-3 space-y-4 text-sm leading-relaxed text-white/70 md:text-base">
             <p>
-            Sou desenvolvedor web com foco em manutenção, correção e evolução de
-            sistemas já em produção. Atuo principalmente no backend, lidando com
-            código legado, regras de negócio, integrações e banco de dados, sempre
-            priorizando estabilidade, clareza técnica e impacto real.
+            Sou desenvolvedor web com foco em manutenção, correção e evolução de sistemas
+            já em produção. Atuo principalmente no backend, lidando com código legado, regras 
+            de negócio, integrações e banco de dados, sempre priorizando estabilidade, clareza 
+            técnica e impacto real. Atualmente estudo Software Development na BYU–Idaho 
+            (Estados Unidos) de forma online e também presto serviços para clientes no exterior.
+            </p>
+            <p>
+            Busco consolidar minha carreira como desenvolvedor, com foco no mercado internacional,
+            assumindo responsabilidades técnicas crescentes e entregando valor ao longo do tempo. 
+            Tenho abertura para atuar em regime CLT ou PJ e vejo a criação de uma empresa de tecnologia
+             como um objetivo de longo prazo, baseado em experiência prática e solidez técnica.
             </p>
 
             <p>
-            Minha experiência vem de ambientes institucionais e sistemas
-            internos, onde confiabilidade, organização e continuidade são
-            essenciais. Tenho facilidade em compreender contextos complexos e
-            transformar necessidades em soluções técnicas sustentáveis.
+            Minha experiência vem de ambientes institucionais principalmente 
+            no setor público, onde atuei em sistemas internos, onde confiabilidade, 
+            organização e continuidade são essenciais. Tenho facilidade em 
+            compreender contextos complexos e transformar necessidades
+            em soluções técnicas sustentáveis.
             </p>
 
             <p>
@@ -47,6 +56,14 @@ export default function SobrePage() {
             para uma visão completa do ciclo de vida do software, desde o uso
             real pelo usuário até a manutenção contínua da aplicação.
             </p>
+
+            <a
+            href="/cv.pdf"
+            download
+            className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-5 py-3 text-sm font-medium text-white backdrop-blur transition hover:bg-white/20"
+          >
+            Baixar currículo (PDF)
+          </a>
         </div>
 
         {/* Foto */}
@@ -65,58 +82,69 @@ export default function SobrePage() {
 
           {/* Tecnologias */}
           <div className="mt-10">
-            <h2 className="text-lg font-semibold text-white/85">
+            <h2 className="mb-6 text-lg font-semibold text-white/85">
               Tecnologias e Ferramentas
             </h2>
 
-            <div className="mt-4 grid gap-5 md:grid-cols-3">
-              <TechGroup
-                title="Backend"
-                items={[
-                  "PHP",
-                  "Laravel",
-                  "APIs REST",
-                  "Autenticação e autorização",
-                  "Integrações",
-                ]}
-              />
+            <div className="grid gap-6 md:grid-cols-3">
+            {/* Backend */}
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+              <h3 className="flex items-center gap-2 text-base font-semibold text-white">
+                <Server className="h-4 w-4 text-white/70" />
+                Backend
+              </h3>
 
-              <TechGroup
-                title="Frontend"
-                items={[
-                  "Next.js",
-                  "TypeScript",
-                  "HTML",
-                  "CSS",
-                  "Tailwind CSS",
-                ]}
-              />
-
-              <TechGroup
-                title="Banco de Dados & Infra"
-                items={[
-                  "MySQL",
-                  "PostgreSQL",
-                  "Modelagem de dados",
-                  "Git / GitHub",
-                  "Deploy e manutenção",
-                ]}
-              />
+              <ul className="mt-3 space-y-2 text-sm md:text-base leading-relaxed text-white/80">
+                <li>PHP + Laravel</li>
+                <li>Node.js</li>
+                <li>APIs REST</li>
+                <li>Autenticação e autorização</li>
+              </ul>
             </div>
+
+            {/* Frontend */}
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+              <h3 className="flex items-center gap-2 text-base font-semibold text-white">
+                <Monitor className="h-4 w-4 text-white/70" />
+                Frontend
+              </h3>
+
+              <ul className="mt-3 space-y-2 text-sm md:text-base leading-relaxed text-white/80">
+                <li>Next.js</li>
+                <li>TypeScript</li>
+                <li>Vue.js</li>
+                <li>Tailwind CSS</li>
+              </ul>
+            </div>
+
+            {/* Banco de Dados & Infra */}
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+              <h3 className="flex items-center gap-2 text-base font-semibold text-white">
+                <Database className="h-4 w-4 text-white/70" />
+                Banco de Dados & Infra
+              </h3>
+
+              <ul className="mt-3 space-y-2 text-sm md:text-base leading-relaxed text-white/80">
+                <li>MySQL</li>
+                <li>PostgreSQL</li>
+                <li>Modelagem de dados</li>
+                <li>Git / GitHub</li>
+              </ul>
+            </div>
+          </div>
           </div>
 
           {/* Forma de atuação técnica */}
           <div className="mt-10">
             <h2 className="text-lg font-semibold text-white/85">
-              Forma de Atuação
+              Meus Diferenciais
             </h2>
 
             <ul className="mt-4 max-w-3xl list-disc space-y-2 pl-5 text-sm text-white/70 md:text-base">
-              <li>Atuação em sistemas já existentes e ambientes de produção</li>
-              <li>Foco em código legível, organizado e fácil de manter</li>
-              <li>Entendimento de regras de negócio antes da implementação</li>
-              <li>Entrega incremental e evolução contínua</li>
-              <li>Comunicação clara com áreas técnicas e não técnicas</li>
+              <li>Experiência em sistemas de produção, com foco em manutenção, estabilidade e evolução segura.</li>
+              <li>Capacidade de transformar regras de negócio complexas em soluções técnicas sustentáveis.</li>
+              <li>Atuação orientada à redução de risco, previsibilidade e impacto real no produto.</li>
+              <li>Comunicação clara com equipes distribuídas e stakeholders não técnicos.</li>
             </ul>
           </div>
 
@@ -154,7 +182,7 @@ function TechGroup({
       <h3 className="text-sm font-semibold text-white/90">
         {title}
       </h3>
-      <ul className="mt-3 space-y-1 text-xs text-white/65">
+      <ul className="mt-3 space-y-2 text-sm md:text-base leading-relaxed text-white/80">
         {items.map((item) => (
           <li key={item}>• {item}</li>
         ))}
