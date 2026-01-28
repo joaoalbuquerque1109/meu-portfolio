@@ -23,9 +23,12 @@ import {
   Zap,
   Timer,
   FileText,
+  CompassIcon,
+  Star,
+  Crown,
 } from "lucide-react";
 
-type PlanKey = "normal" | "plus" | "premium";
+type PlanKey = "base" | "plus" | "Pro";
 type DeliveryMode = "alugar" | "comprar";
 type ContractType = "projeto" | "semestral" | "anual";
 
@@ -41,8 +44,8 @@ export default function ServicesInteractive() {
 
   const planMeta = useMemo(
     () => ({
-      normal: {
-        label: "Normal",
+      base: {
+        label: "Base",
         icon: <CheckCircle2 className="h-4 w-4 text-white/80" />,
         tone: "border-white/10 bg-white/5",
         tagline: "Essencial, direto ao ponto.",
@@ -51,13 +54,13 @@ export default function ServicesInteractive() {
         label: "Plus",
         icon: <Sparkles className="h-4 w-4 text-indigo-200" />,
         tone: "border-indigo-400/20 bg-indigo-500/10",
-        tagline: "Equilíbrio entre velocidade e qualidade.",
+        tagline: "Equilíbrio: velocidade e qualidade.",
       },
-      premium: {
-        label: "Premium",
-        icon: <BadgeCheck className="h-4 w-4 text-emerald-200" />,
+      Pro: {
+        label: "Pro",
+        icon: <Crown className="h-4 w-4 text-white/200" />,
         tone: "border-emerald-400/20 bg-emerald-500/10",
-        tagline: "Mais previsibilidade, menos risco.",
+        tagline: "Mais previsivel, menos risco.",
       },
     }),
     []
@@ -133,16 +136,16 @@ export default function ServicesInteractive() {
         ],
       },
       {
-        title: "Marketing Digital (básico) + Tráfego Pago",
-        icon: <Megaphone className="h-5 w-5 text-white/80" />,
+        title: "Suporte ao Usuário & Consultoria",
+        icon: <CompassIcon className="h-5 w-5 text-white/80" />,
         desc:
-          "Estrutura e otimização básica de presença digital, incluindo gestão de tráfego pago quando fizer sentido para aquisição.",
-        fits: ["Projeto", "Semestral", "Anual"],
+          "Apoio técnico e consultivo para usuários e equipes, focado em resolução de problemas, orientação prática e melhoria contínua no uso de sistemas e processos.",
+        fits: ["Projeto", "PJ contínuo", "Semestral", "Anual"],
         bullets: [
-          "Estrutura mínima de campanha",
-          "Gestão de tráfego pago (básico)",
-          "Otimizações e recomendações",
-          "Sem promessas irreais — foco em dados",
+          "Suporte técnico ao usuário final",
+          "Diagnóstico e resolução de problemas",
+          "Orientação sobre uso de sistemas e ferramentas",
+          "Consultoria para melhoria de processos e rotinas",
         ],
       },
     ],
@@ -151,8 +154,8 @@ export default function ServicesInteractive() {
 
   const combos = useMemo(
     () => ({
-      normal: {
-        title: "Normal",
+      base: {
+        title: "Base",
         subtitle: "Para resolver o essencial com clareza.",
         items: [
           "Entrega objetiva (escopo bem definido)",
@@ -166,15 +169,15 @@ export default function ServicesInteractive() {
         title: "Plus",
         subtitle: "O pacote que mais vale a pena (padrão).",
         items: [
-          "Tudo do Normal",
+          "Tudo do Base",
           "Validações do essencial (redução de risco)",
           "Pequeno buffer para ajustes pós-entrega",
           "Relatório curto com próximos passos",
         ],
         bestFor: "Sites/landings, evoluções em produção e automações.",
       },
-      premium: {
-        title: "Premium",
+    Pro: {
+        title: "Pro",
         subtitle: "Quando o custo do erro é alto.",
         items: [
           "Tudo do Plus",
@@ -219,10 +222,10 @@ export default function ServicesInteractive() {
     () => ({
       alugar: {
         title: "Alugar (assinatura)",
-        badge: "Melhor para atualizações contínuas",
         desc:
           "Você paga uma assinatura e eu mantenho o site/landing rodando e atualizado conforme o pacote.",
         bullets: [
+          "Melhor para atualizações contínuas",
           "Ajustes e atualizações enquanto durar a assinatura",
           "Correções incluídas conforme o combo",
           "Previsibilidade para o negócio",
@@ -230,10 +233,10 @@ export default function ServicesInteractive() {
       },
       comprar: {
         title: "Comprar (entrega única)",
-        badge: "Entrega final + posse do projeto",
         desc:
           "Você compra o projeto e recebe a entrega final. A manutenção fica inclusa por 90 dias após a entrega.",
         bullets: [
+          "Entrega final + posse do projeto",
           "Entrega final + handoff",
           "Manutenção inclusa por 90 dias após a compra",
           "Após 90 dias: manutenção via contrato PJ ou novo escopo",
@@ -281,16 +284,16 @@ Anual (PJ): recomendado quando o sistema é crítico para o negócio e você que
   return (
     <div className="space-y-10">
       {/* Seletor interativo */}
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-3">
         {/* Combo */}
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-6 ">
           <div className="flex items-center justify-between">
-            <h2 className="text-base font-semibold text-white">Combo</h2>
-            <span className="text-xs text-white/50">Normal • Plus • Premium</span>
+            <h2 className="text-base font-semibold text-white">Plano</h2>
+            <span className="text-xs text-white/50">Base • Plus • Pro</span>
           </div>
 
           <div className="mt-4 grid grid-cols-3 gap-2">
-            {(["normal", "plus", "premium"] as PlanKey[]).map((k) => {
+            {(["base", "plus", "Pro"] as PlanKey[]).map((k) => {
               const active = plan === k;
               return (
                 <button
@@ -435,9 +438,6 @@ Anual (PJ): recomendado quando o sistema é crítico para o negócio e você que
                   {buyOrRentRules[deliveryMode].desc}
                 </div>
               </div>
-              <span className="rounded-full border border-white/10 bg-white/5 px-2 py-1 text-[11px] text-white/70">
-                {buyOrRentRules[deliveryMode].badge}
-              </span>
             </div>
 
             <ul className="mt-3 space-y-2 text-sm text-white/70">

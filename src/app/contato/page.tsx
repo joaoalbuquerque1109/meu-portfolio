@@ -67,7 +67,7 @@ export default function ContatoPage() {
 
                   {/* LinkedIn */}
                   <a
-                    href="https://www.linkedin.com/in/SEU_USUARIO/"
+                    href="https://www.linkedin.com/in/joão-victor-albuquerque-932747257"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/80 transition hover:bg-white/10"
@@ -75,13 +75,13 @@ export default function ContatoPage() {
                     <Linkedin className="mt-0.5 h-4 w-4 text-sky-300" />
                     <div>
                       <div className="font-medium text-white">LinkedIn</div>
-                      <div className="text-white/70">/in/SEU_USUARIO</div>
+                      <div className="text-white/70">www.linkedin.com/in/joão-victor-albuquerque-932747257</div>
                     </div>
                   </a>
 
                   {/* GitHub */}
                   <a
-                    href="https://github.com/SEU_USUARIO"
+                    href="https://https://github.com/joaoalbuquerque1109"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/80 transition hover:bg-white/10"
@@ -89,7 +89,7 @@ export default function ContatoPage() {
                     <Github className="mt-0.5 h-4 w-4 text-white/70" />
                     <div>
                       <div className="font-medium text-white">GitHub</div>
-                      <div className="text-white/70">github.com/SEU_USUARIO</div>
+                      <div className="text-white/70">https://github.com/joaoalbuquerque1109</div>
                     </div>
                   </a>
                 </div>
