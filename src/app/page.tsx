@@ -188,7 +188,7 @@ export default function HomePage() {
 
       {/* Projetos Recentes */}
       <section id="projetos" className="container-page pb-10">
-        <h2 className="mb-4 text-lg font-semibold text-white/85">Projetos Recentes</h2>
+        <h2 className="mb-4 text-lg font-semibold text-white/85">O que eu posso fazer por você?</h2>
 
         <div className="glass rounded-3xl p-6">
           <div className="grid gap-6 md:grid-cols-3">
@@ -213,7 +213,7 @@ export default function HomePage() {
               href="#projetos"
               className="btn-glow rounded-xl border border-indigo-300/15 bg-white/5 px-6 py-2.5 text-sm text-white/90 transition hover:bg-white/10"
             >
-              Ver Mais Projetos &nbsp;›
+              Ver Meus Projetos &nbsp;›
             </a>
           </div>
         </div>
