@@ -1,4 +1,7 @@
+"use client";
+
 // app/projetos/page.tsx
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -23,6 +26,7 @@ const projects: Project[] = [
     subtitle: "Landing page focada em conversão (captação de clientes).",
     badge: "Landing Page",
     repoUrl: "https://github.com/joaoalbuquerque1109/page-oticavip",
+    liveUrl: "https://joaoalbuquerque1109.github.io/page-oticavip/",
     goal:
       "Transformar visitas em mensagens no WhatsApp e pedidos de orçamento com uma experiência rápida, bonita e objetiva.",
     whyNeed:
@@ -34,9 +38,9 @@ const projects: Project[] = [
     ],
     stack: ["Next.js", "TypeScript", "Tailwind"],
     gallery: [
-      { src: "/projects/otica-vip/01.png", alt: "Ótica VIP - Hero" },
-      { src: "/projects/otica-vip/02.png", alt: "Ótica VIP - Seções" },
-      { src: "/projects/otica-vip/03.png", alt: "Ótica VIP - CTA" },
+      { src: "/otica-vip/otica1.png", alt: "Ótica VIP - Hero" },
+      { src: "/otica-vip/otica2.png", alt: "Ótica VIP - Seções" },
+      { src: "/otica-vip/otica3.png", alt: "Ótica VIP - CTA" },
     ],
   },
   {
@@ -45,6 +49,7 @@ const projects: Project[] = [
     subtitle: "Sistema para administrar benefícios e processos internos.",
     badge: "Projeto em equipe",
     repoUrl: "https://github.com/joaoalbuquerque1109/gestao-beneficios",
+    liveUrl: "https://gestao-beneficios.vercel.app/",
     goal:
       "Centralizar solicitações, aprovações e controle de benefícios em um único fluxo — reduzindo retrabalho e ruído entre setores.",
     whyNeed:
@@ -56,9 +61,9 @@ const projects: Project[] = [
     ],
     stack: ["Next.js", "TypeScript", "Tailwind"],
     gallery: [
-      { src: "/projects/gestao-beneficios/01.png", alt: "Gestão de Benefícios - Dashboard" },
-      { src: "/projects/gestao-beneficios/02.png", alt: "Gestão de Benefícios - Listas" },
-      { src: "/projects/gestao-beneficios/03.png", alt: "Gestão de Benefícios - Detalhes" },
+      { src: "/gestao-beneficios/gestao1.png", alt: "Gestão de Benefícios - Login" },
+      { src: "/gestao-beneficios/gestao2.png", alt: "Gestão de Benefícios - Detalhes" },
+      { src: "/gestao-beneficios/gestao3.png", alt: "Gestão de Benefícios - Configurações" },
     ],
   },
   {
@@ -67,6 +72,7 @@ const projects: Project[] = [
     subtitle: "Sistema de barbearia: agenda, clientes e rotina sem bagunça.",
     badge: "Sistema Web",
     repoUrl: "https://github.com/joaoalbuquerque1109/barberflow-pro-70",
+    liveUrl: "https://barberflow-pro-70.lovable.app/",
     goal:
       "Organizar agenda, registrar atendimentos e dar visão clara do dia (e do mês) — sem depender de caderno, direct e conversa no WhatsApp.",
     whyNeed:
@@ -78,9 +84,9 @@ const projects: Project[] = [
     ],
     stack: ["Next.js", "TypeScript", "Tailwind"],
     gallery: [
-      { src: "/projects/barberflow/01.png", alt: "BarberFlow - Agenda" },
-      { src: "/projects/barberflow/02.png", alt: "BarberFlow - Clientes" },
-      { src: "/projects/barberflow/03.png", alt: "BarberFlow - Painel" },
+      { src: "/barberflow/barber1.png", alt: "BarberFlow - Home" },
+      { src: "/barberflow/barber2.png", alt: "BarberFlow - Dashboard" },
+      { src: "/barberflow/barber4.png", alt: "BarberFlow - Login" },
     ],
   },
   {
@@ -100,16 +106,16 @@ const projects: Project[] = [
     ],
     stack: ["Next.js", "TypeScript", "Supabase (planejado)"],
     gallery: [
-      { src: "/projects/my-erp/01.png", alt: "My-ERP - Visão geral" },
-      { src: "/projects/my-erp/02.png", alt: "My-ERP - Módulos" },
-      { src: "/projects/my-erp/03.png", alt: "My-ERP - Fluxos" },
+      { src: "/my-erp/erp1.png", alt: "My-ERP - Visão geral" },
+      { src: "/my-erp/erp2.png", alt: "My-ERP - Módulos" },
+      { src: "/my-erp/erp3.png", alt: "My-ERP - Fluxos" },
     ],
   },
 ];
 
 const demoProject: Project = {
   slug: "portfolio-demo",
-  title: "Este Portfólio (Sistema Demonstrativo)",
+  title: "Este Portfólio que você está vendo",
   subtitle: "A própria página de projetos é um produto: UI + arquitetura + experiência.",
   badge: "Demo",
   goal:
@@ -122,11 +128,7 @@ const demoProject: Project = {
     "Pensado para crescer: novas páginas, serviços, funis e produtos",
   ],
   stack: ["Next.js", "TypeScript", "Tailwind"],
-  gallery: [
-    { src: "/projects/portfolio/01.png", alt: "Portfólio - Home" },
-    { src: "/projects/portfolio/02.png", alt: "Portfólio - Projetos" },
-    { src: "/projects/portfolio/03.png", alt: "Portfólio - Serviços" },
-  ],
+  gallery: [],
 };
 
 function cn(...classes: Array<string | false | undefined | null>) {
@@ -157,32 +159,162 @@ function Badge({ text }: { text: Project["badge"] }) {
   );
 }
 
+/**
+ * Gallery com Lightbox responsivo:
+ * - trava scroll do fundo (body overflow hidden)
+ * - permite rolagem DENTRO do modal (container rolável)
+ * - ESC fecha | ← → navega
+ */
 function Gallery({ items }: { items: { src: string; alt: string }[] }) {
+  const safeItems = useMemo(
+    () => (items ?? []).filter((it) => typeof it?.src === "string" && it.src.trim().startsWith("/")),
+    [items]
+  );
+
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const active = activeIndex === null ? null : safeItems[activeIndex];
+
+  // ESC + setas
+  useEffect(() => {
+    if (activeIndex === null) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setActiveIndex(null);
+      if (e.key === "ArrowRight")
+        setActiveIndex((i) => (i === null ? null : Math.min(i + 1, safeItems.length - 1)));
+      if (e.key === "ArrowLeft")
+        setActiveIndex((i) => (i === null ? null : Math.max(i - 1, 0)));
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [activeIndex, safeItems.length]);
+
+  if (!safeItems.length) return null;
+
   return (
-    <div className="mt-4">
-      <div className="flex gap-3 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {items.map((img) => (
-          <div
-            key={img.src}
-            className="relative h-40 w-72 shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-black/20 md:h-44 md:w-80"
-          >
-            <Image
-              src={img.src}
-              alt={img.alt}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 288px, 320px"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent" />
-          </div>
-        ))}
+    <>
+      {/* Thumbs */}
+      <div className="mt-4">
+        <div className="flex gap-3 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {safeItems.map((img, idx) => (
+            <button
+              key={`${img.src}-${idx}`}
+              type="button"
+              onClick={() => setActiveIndex(idx)}
+              className="relative h-40 w-72 shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-black/20 md:h-44 md:w-80"
+              aria-label={`Abrir imagem: ${img.alt}`}
+            >
+              <Image
+                src={img.src}
+                alt={img.alt}
+                fill
+                className="cursor-zoom-in object-cover transition-transform duration-300 hover:scale-[1.03]"
+                sizes="(max-width: 768px) 288px, 320px"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent" />
+            </button>
+          ))}
+        </div>
       </div>
-      <p className="mt-2 text-xs text-white/45">
-        *Dica: coloque 2–4 prints por projeto em <span className="text-white/70">/public/projects/...</span>
-      </p>
-    </div>
+
+      {/* Modal */}
+      {active && (
+        <div
+          className="mx-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-white/10 bg-black/55 shadow-2xl animate-modal-scale"
+          style={{ WebkitOverflowScrolling: "touch" }}
+          onClick={(e) => e.stopPropagation()}
+          role="dialog"
+          aria-modal="true"
+        >
+          {/* spacer p/ permitir rolagem confortável */}
+          <div className="min-h-[100svh] px-4 py-6 sm:px-6 sm:py-10">
+            <div
+              className="mx-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-white/10 bg-black/55 shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header */}
+              <div className="flex flex-col gap-2 border-b border-white/10 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-medium text-white/90">{active.alt}</p>
+                  <p className="text-xs text-white/50">
+                    {activeIndex! + 1} / {safeItems.length} • ESC fecha • ← → navega
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-2 sm:justify-end">
+                  <a
+                    href={active.src}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-xl border border-white/10 bg-black/30 px-3 py-2 text-xs font-medium text-white/85 hover:bg-black/40"
+                  >
+                    Abrir imagem em nova aba
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setActiveIndex(null)}
+                    className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-white/85 hover:bg-white/10"
+                  >
+                    Fechar
+                  </button>
+                </div>
+              </div>
+
+              {/* Imagem responsiva */}
+              <div className="relative w-full">
+                {/* Em vez de “travado” em vh, aqui mantém uma boa altura e ainda permite rolar o modal */}
+                <div className="relative h-[55svh] w-full sm:h-[70svh]">
+                  <Image
+                    src={active.src}
+                    alt={active.alt}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 92vw, 1024px"
+                    priority
+                  />
+                </div>
+              </div>
+
+              {/* Controls */}
+              <div className="flex flex-col gap-2 border-t border-white/10 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+                <button
+                  type="button"
+                  onClick={() => setActiveIndex((i) => (i === null ? null : Math.max(i - 1, 0)))}
+                  disabled={activeIndex === 0}
+                  className={cn(
+                    "w-full rounded-xl border px-4 py-2 text-sm sm:w-auto",
+                    "border-white/10 bg-white/5 text-white/85 hover:bg-white/10",
+                    activeIndex === 0 && "cursor-not-allowed opacity-40 hover:bg-white/5"
+                  )}
+                >
+                  ← Anterior
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    setActiveIndex((i) => (i === null ? null : Math.min(i + 1, safeItems.length - 1)))
+                  }
+                  disabled={activeIndex === safeItems.length - 1}
+                  className={cn(
+                    "w-full rounded-xl border px-4 py-2 text-sm sm:w-auto",
+                    "border-white/10 bg-white/5 text-white/85 hover:bg-white/10",
+                    activeIndex === safeItems.length - 1 &&
+                      "cursor-not-allowed opacity-40 hover:bg-white/5"
+                  )}
+                >
+                  Próxima →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
+
 
 function ProjectCard({ p }: { p: Project }) {
   return (

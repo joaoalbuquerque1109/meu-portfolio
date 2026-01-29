@@ -7,11 +7,7 @@ import { Linkedin, Github, Mail, MessageCircle } from "lucide-react";
 export default function ContatoPage() {
   return (
     <main className="relative min-h-screen overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 -z-20">
-        <Image src="/bg.jpg" alt="" fill priority className="object-cover" />
-      </div>
-
+      
       {/* Vignette */}
       <div className="absolute inset-0 -z-10 vignette" />
 
